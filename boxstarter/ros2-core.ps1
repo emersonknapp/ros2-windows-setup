@@ -21,3 +21,18 @@ cinst -s \dev\ros2\tmp `
   log4cxx `
   tinyxml-usestl `
   tinyxml2
+
+
+python -m pip install -U `
+  catkin_pkg `
+  cryptography `
+  empy `
+  ifcfg `
+  lark-parser `
+  lxml `
+  netifaces `
+  numpy `
+  opencv-python `
+  pyparsing `
+  pyyaml `
+  setuptools
