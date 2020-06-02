@@ -3,6 +3,7 @@ Update-ExecutionPolicy Unrestricted
 # Enables TLS 1.2 for curl (HTTP connection would fail without this)
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
+cinst visualstudio2019community --package-parameters "--passive --add Microsoft.VisualStudio.Product.Community --add Microsoft.VisualStudio.Component.VC.CoreIde --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --includeRecommended --locale en-US"
 cinst python --version 3.8.3
 cinst cmake
 
