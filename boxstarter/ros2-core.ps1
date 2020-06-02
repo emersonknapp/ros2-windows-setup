@@ -4,11 +4,6 @@ Update-ExecutionPolicy Unrestricted
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 cinst python --version 3.8.3
-cinst vcredist2013
-cinst vcredist140
-
-cinst visualstudio2019community -package-parameters "--config $((Get-Location).Path + '\vsconfig')"
-
 cinst cmake
 
 New-Item -ItemType Directory -Force -Path \dev\ros2\tmp
