@@ -28,7 +28,7 @@ cinst python --version 3.8.3
 curl https://slproweb.com/download/Win64OpenSSL-1_1_1g.exe -o %DEPS%\Win64OpenSSL-1_1_1g.exe
 %DEPS%\Win64OpenSSL-1_1_1g.exe /s
 setx -m OPENSSL_CONF C:\OpenSSL-Win64\bin\openssl.cfg
-setx -m PATH %PATH%;C:\OpenSSL-Win64\bin
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\OpenSSL-Win64\bin", "Machine")
 
 # Get and install OSRF custom non-contributed choco packages
 curl https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg          -o %DEPS%\asio.1.12.1.nupkg
