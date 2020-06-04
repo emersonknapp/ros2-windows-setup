@@ -9,6 +9,17 @@ Update-ExecutionPolicy Unrestricted
 set DEPS=\dev\ros2\dependencies
 New-Item -ItemType Directory -Force -Path %DEPS%
 
+cinst vcredist2013
+cinst vcredist140
+
+cinst python --version 3.8.3
+
+# Install OpenSSL
+curl https://slproweb.com/download/Win64OpenSSL-1_1_1g.exe -o %DEPS%\Win64OpenSSL-1_1_1g.exe
+%DEPS%\Win64OpenSSL-1_1_1g.exe /s /q
+setx -m OPENSSL_CONF C:\OpenSSL-Win64\bin\openssl.cfg
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\OpenSSL-Win64\bin", "Machine")
+
 # Install visual studio with necessary components
 cinst visualstudio2019community --package-parameters " `
   --passive `
@@ -19,16 +30,7 @@ cinst visualstudio2019community --package-parameters " `
   --includeRecommended `
   --locale en-US"
 
-cinst vcredist2013
-cinst vcredist140
-
-cinst python --version 3.8.3
-
-# Install OpenSSL
-curl https://slproweb.com/download/Win64OpenSSL-1_1_1g.exe -o %DEPS%\Win64OpenSSL-1_1_1g.exe
-%DEPS%\Win64OpenSSL-1_1_1g.exe /s
-setx -m OPENSSL_CONF C:\OpenSSL-Win64\bin\openssl.cfg
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\OpenSSL-Win64\bin", "Machine")
+cinst cmake --installargs 'ADD_CMAKE_TO_PATH=System'
 
 # Get and install OSRF custom non-contributed choco packages
 curl https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg          -o %DEPS%\asio.1.12.1.nupkg
@@ -47,10 +49,10 @@ cinst -s %DEPS% `
   tinyxml2
 
 # Basic python tools
-python -m pip install -U pip wheel setuptools
+py -m pip install -U pip wheel setuptools
 
 # ROS2 python runtime dependencies
-python -m pip install -U `
+py -m pip install -U `
   catkin_pkg `
   cryptography `
   empy `
